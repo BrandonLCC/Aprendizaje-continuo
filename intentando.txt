@@ -1,9 +1,0 @@
-intentando probar si se sincronizan las ramas con esto
-
-aqui trato de sincronizar las ramas luego de haberlas sincronizado desde el local.
-
-luego de que se haya hecho push desde la rama 1 al main, se hace merge desde github
-
-luego de sincronizan los cambios desde el local con pull o fetch, (todavia falta mejorar)
-
-y las dos ramas quedan actualizadas y con el mismo historial
