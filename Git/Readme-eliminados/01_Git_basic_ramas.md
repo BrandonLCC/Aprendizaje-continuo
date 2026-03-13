@@ -15,7 +15,6 @@ cd <nombre_del_repositorio>
 ```
 
 ---
-
 ### Crear un nuevo repositorio desde cero
 
 ```bash
