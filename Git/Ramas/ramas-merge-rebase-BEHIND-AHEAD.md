@@ -1,5 +1,15 @@
 # Guía Práctica de Git - `merge`, `rebase` y resolución de conflictos
-
+```mermaid
+gitGraph
+   commit id: "A"
+   commit id: "B"
+   branch feature
+   commit id: "E"
+   commit id: "F"
+   checkout main
+   commit id: "C"
+   commit id: "D"
+```
 ## Escenario
 
 Cuando GitHub dice:

@@ -183,7 +183,8 @@ git add .
 git commit -m "feat: agregar nueva funcionalidad"
 
 # Subir la rama al repositorio remoto
-git push -u origin rama_ejemplo
+git push -u origin rama_ejemplo # solo -u cuando quieres subir una rama, cuando la rama ya existe no se usa -u
+
 ```
 
 ---

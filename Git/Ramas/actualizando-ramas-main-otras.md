@@ -1,4 +1,4 @@
- eso esta bien? hacer merge en una rama para traer cambios de otra y asi con main?
+ eso esta bien? hacer merge en una rama para traer cambios de otra y tambien asi con main?
 
 Sí, eso está bien 👍 Es una práctica normal en Git.
 
