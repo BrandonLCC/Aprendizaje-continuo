@@ -1,7 +1,5 @@
 # Aprendiendo a dominar git 
 
-**Autor:** Brandon Casas
-
 ## Comandos basicos de git 
 
 ```bash
@@ -14,6 +12,7 @@ git clone <url_del_repositorio>
 
 # Ingresa a la carpeta del proyecto
 cd <nombre_del_repositorio>
+
 
 # ==========================================
 # CREAR UN NUEVO REPOSITORIO DESDE CERO
@@ -51,42 +50,42 @@ git commit -m "Descripción clara del cambio"
 
 # Envía los cambios al repositorio remoto
 git push origin main
+
 ```
+
+## descartar cambios 
+
+```bash
+
+git restore --staged archivo.py
+
+
+```
+
 ---
 
 ## Ramas  
 
 - Contendio referido solamente a ramas, a continuacion de esta seccion, se hablara de uniones o entre otras cosas. 
 
-¿Por qué una nueva rama?
-
-Buscamos separar nuestro trabajo realizado al del proyecto, con el fin de evitar mezclar y romper el proyecto de conflictos.
-
-Si la rama se fusiona con el proyecto, todo bien, pero si si hay conflictos podemos eliminar la rama o modificar los archivos que contiene la rama para evitar errores. 
-
-Existen diferentes formas y beneficios de las ramas que se aprenden con la experiencia.
-
-
 ### Creación de rama
 
 ```bash
 
-# Verifica las ramas disponibles o si se ha creado la rama. (Ramas disponibles en tu proyecto local).
+# Al hacer el git add y git commit -m, el siguiente paso sera enfocado en la creación de ramas.
+
+# Verifica las ramas disponibles o si se ha creado la rama.
 
 git branch
 
-# Verifica todas las ramas disponibles en el repositorio de manera remota (all).
-
-git branch -a # -a = all
-
-# Crea tu primera rama
+# Al crear una rama, hay que hacer add . en algunos casos
 
 git branch <nombre_rama>
 
-# Nombres de ramas.
-
-# Para las buenas practicas, utilizaremos estos prefijos y sus nombres.
+# Nombres de ramas. Para las buenas practicas, utilizaremos estos prefijos y sus nombres.
 # Siempre en minúsculas y separando con guiones:
+
+git branch feature/sistema-pago-online
 
 | Prefijo     | Cuándo usarlo                            | Ejemplo                         |
 | ----------- | ---------------------------------------- | ------------------------------- |
@@ -97,126 +96,103 @@ git branch <nombre_rama>
 | `docs/`     | Documentación                            | `docs/readme-api`               |
 | `test/`     | Agregar o mejorar tests                  | `test/modelos-usuario`          |
 | `chore/`    | Tareas técnicas menores                  | `chore/actualizar-dependencias` |
-```
-### Eliminar una rama 
 
-```bash 
-git branch -d <nombre_rama> # d = delete
-```
+# Opcion 2: Esta opcion nos cambia el punto de vista de como funciona git en otras ocaciónes.
 
+git checkout -b nombre_rama
+
+# Crea la rama y automáticamente te cambia a ella.
+
+#Ejemplo:
+
+git checkout -b feature-login
+
+
+# Es equivalente a hacer:
+
+git branch feature-login
+git checkout feature-login
+
+
+# Pero en un solo comando.
+
+```
 ### Moverte de una rama a otra
 
-
 ```bash
-# Visualizamos las ramas disponibles en el repositorio local.
+
+# Visualizamos las ramas disponibles 
 
 git branch
-```
-#### **Selecciónar una rama**
 
-```bash
 # Selecciónamos la rama que queremos entrar
 
 git checkout <Nombre de la rama creada>
 
-# Version Creación y posicionamiento (Una combinación de branch y checkout)
-
-# Con este codigo puedes hacer dos trabajos a la vez, Creas una rama y entras directamente en ella.
-
-# Este codigo te puede ayudar a entender un punto diferente de las cosas. Entender que existen similitudes y veriedades.
-
-git checkout -b <nombre_rama_>
-```
-## SINCRONIZAR CAMBIOS
-
-### Fusionar una rama con otra (Merge)
-
-El objetivo de esta sección es unir los cambios de una rama secundaria (rama_ejemplo) con la rama principal (main).
-
-Esto se hace normalmente después de desarrollar una nueva funcionalidad.
+# O tambien
 
 
-
-```mermaid
-gitGraph
-    commit
-    branch rama_ejemplo
-    checkout rama_ejemplo
-    commit 
-    commit
-    commit
-
-    checkout main
-    merge rama_ejemplo
 
 ```
 
-1. Se crea una nueva rama.
+---
 
-2. Se realizan varios commits en ella.
+## Realizar marche de ramas (union de ramas)
 
-3. Luego se vuelve a main.
+En esta sección habran dos escenarios
 
-4. Finalmente se hace el merge. (unir ramas)
+1. Una union correcta de ramas
 
-
-```bash 
-
-# Verificamos el estado del proyecto
-
-git status 
-
-# Ver  ramas disponibles
-
-git branch # ramas locales
-git branch -a # ramas remotas
+2. Cuando existe un conficto de ramas 
 
 
-# Crear y entrar a la rama nueva
+```bash
 
-git checkout -b rama_ejemplo
-
-# Verificamos que la rama se haya creado
-
-git branch
-
-# Hacemos git status para verificar que archivos modificamos
-
-git status
-
-#  Agregar cambios
-
-git add . # opcion 1: Agregar todos los cambios 
-
-git add readme.md # Agregar solo un archivo o carpeta
-
-# realizar un commit
-
-git commit -m "subir estos archivos al repositorio de brandon"
-
-# realizar push (empujo)
-
-# -u vincula tu rama creada localmente a la rama remota
-
-git push -u origin rama_ejemplo
-
-
-# Luego nos vamos al siguiente paso:
+git 
 
 ```
-### Crear un Pull Request (PR)
 
-- Luego de hacer push para subir tu rama deberas confirmar los cambios y hacer merge de las ramas
+--- 
+
+## Mis Errores
+
+### **Error clasico:** Un repositorio dentro de otro repositorio. (submodulo)
+
+Cuando iniciamos un proyecto como principiantes, es común cometer el error de crear un repositorio dentro de otro repositorio sin intención.
+
+Esto genera lo que Git interpreta como un submódulo, aunque realmente no queríamos crear uno.
+
+---
+
+**¿Por qué ocurre esto?**
+
+- Ejecutamos git init en una carpeta padre.
+
+- Luego ejecutamos git init nuevamente en una subcarpeta.
+
+- O clonamos (git clone) un repositorio dentro de una carpeta que ya tenía un .git
 
 
-1. Vas al repositorio del github
+```
+Proyecto-FIFA-web/        ← Repo 1 (master, sin commits)
+│
+└── FIFA-web/             ← Repo 2 (main, con commits)
+      ├── .git
+      ├── README.md
+      ├── LICENSE
+      └── ...
+```
 
-2. Clic en Compare & pull request
+**¿Cómo evitar este error?**
 
-3. Explicas qué hiciste
+Regla profesional:
 
-4. Seleccionas hacia qué rama quieres hacer merge (normalmente main o develop)
+> Un proyecto = una carpeta raíz = un solo .git
 
+# Referencias 
 
+Como inicar git
+https://www.youtube.com/watch?v=QYIT6k4JOfM
 
-
+fusion merge de ramas
+https://www.youtube.com/watch?v=Kq3AbJayY6Y
